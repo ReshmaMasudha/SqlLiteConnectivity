@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Name="page"
+             x:Class="SqlLiteConnectivity.ContactsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New"
+                     Clicked="NewContactToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <!--<ListView x:Name="listView" HasUnevenRows="True"  >
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell TextColor="Green"  DetailColor="Yellow"  Text="{Binding Name}" Detail="{Binding Email}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
+
+    <CollectionView x:Name="listView" >
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <SwipeView>
+                    <SwipeView.LeftItems>
+                        <SwipeItems>
+                            <SwipeItem Text="Delete" BackgroundColor="LightPink" CommandParameter="{Binding .}"  Command="{Binding DeleteCommand , Source={x:Reference page} }" />
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+                    <SwipeView.RightItems>
+                        <SwipeItems>
+                            <SwipeItem Text="Update" BackgroundColor="LightPink" CommandParameter="{Binding .}"  Command="{Binding UpdateCommand , Source={x:Reference page} }" />
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <StackLayout Orientation="Vertical">
+                        <Label TextColor="Green" Text="{Binding Name}" FontAttributes="Bold"/>
+                        <Label TextColor="Yellow" Text="{Binding Email}" FontAttributes="Italic" TextDecorations="Underline"/>
+                    </StackLayout>
+                </SwipeView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+    <!--<CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="5" VerticalItemSpacing="5" />
+        </CollectionView.ItemsLayout>-->
+
+</ContentPage>
